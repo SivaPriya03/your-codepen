@@ -1,0 +1,28 @@
+{
+  "name": "your-codepen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin/cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "startdev": "nodemon ./src/server/index.js",
+    "start": "node ./src/server/index.js"
+    
+  },
+  "bin": {
+    "your-codepen": "./bin/cli.js"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "boxen": "^4.2.0",
+    "browser-sync": "^2.27.4",
+    "browsersync": "0.0.1-security",
+    "chalk": "^2.4.2",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.12",
+    "yargs": "^13.3.2"
+  }
+}

@@ -1,0 +1,5 @@
+{
+    "watch": ["src/server/*"],
+    "delay": "3",
+    "ignore": ["src/statics/*"]
+}
