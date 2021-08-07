@@ -1,4 +1,5 @@
 import express from 'express'
+import fs from 'fs'
 import getHTMLStr from './constants/htmlStr.js'
 import browserSync from 'browser-sync'
 import { getDirName, getCrntWrkingDir } from '../utils/index.js';
@@ -10,15 +11,21 @@ function startServer(){
         server: 'app',
         watch: true,
         files: [APP_NAME],
-        reloadDebounce: 1000, // Wait 1 sec
+        reloadDebounce: 500, // Wait 1 sec
         injectChanges: false,
         middleware: [
             async function (req, res, next) {
                 const { originalUrl = '/' } = req;
-                if(originalUrl === '/'){
+                if(originalUrl === '/' || originalUrl === '/favicon.ico'){
                     res.write(getHTMLStr());
                     res.end();
                 }
+                // <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+                // else if( originalUrl === '/favicon.ico'){
+                //     var img = fs.readFileSync('.\\assets\\favicon.ico');
+                //     res.writeHead(200, {'Content-Type': 'image/x-icon' });
+                //     res.end(img, 'binary');
+                // }
                 else{
                     const htmlContent = await getPathNameOfStatic(originalUrl, getCrntWrkingDir());
                     res.write(htmlContent);
@@ -41,4 +48,6 @@ function startServer(){
     //    console.log(clientSideSocket);
     // });
 }
-startServer();
+// startServer();
+
+export default startServer;

@@ -6,7 +6,7 @@ import chalk from "chalk";
 import yargs from "yargs";
 import optionConstants from "../src/constants/index.js";
 import startServer from "../src/server/index.js";
-import { getCommand } from "../src/server/utils/index.js";
+import { getCommand } from "../src/utils/index.js";
 
 const options = yargs
  .usage("Usage: -n <name>")
@@ -16,7 +16,7 @@ const options = yargs
 const command = getCommand();
 
 switch(command){
-    case 'start':{
+    case 'startApp':{
         startServer();
         break;
     }

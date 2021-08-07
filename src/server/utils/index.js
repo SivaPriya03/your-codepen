@@ -3,14 +3,14 @@ import getHTMLStr from '../constants/htmlStr.js';
 const getAllFilePaths = (reqPath, serverDIR) => {
     const getParentDirPath = (ext) => {
         let pathResource = reqPath.split('/')[1];
-        return `${serverDIR}\\app\\${pathResource}\\index.${ext}`;
+        return `${serverDIR}/app/${pathResource}/index.${ext}`;
     }
     return { html: getParentDirPath('html'), css: getParentDirPath('css'), js: getParentDirPath('js') } 
 }
 
 const readFile = (filePath, onSucess, onError) => {
     return promises.readFile(filePath, "utf8").catch(err => {
-        console.log('Unexpected error occurred', filePath)
+        console.log('Unexpected error occurred', err)
     })
 }
 

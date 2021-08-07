@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "startdev": "nodemon ./src/server/index.js",
     "start": "node ./src/server/index.js"
-    
   },
   "bin": {
     "your-codepen": "./bin/cli.js"
