@@ -1,4 +1,5 @@
-export default function(html = '', styles = '', jsContent = '') {
+const defaultHTML = `<h1> Home Page </h1>`
+export default function(html = defaultHTML, styles = '', jsContent = '') {
   return `<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -11,7 +12,6 @@ export default function(html = '', styles = '', jsContent = '') {
       </style>
   </head>
   <body>
-  <h1>Hello Siva</h1>
   ${html}
   <script>
     ${jsContent}

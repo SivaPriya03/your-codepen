@@ -1,7 +1,9 @@
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import chalk from "chalk";
-import { appConst, commandObj, commands, appRegex, defaultSchema, PACKAGE_NAME } from '../constants/index.js'
+import { appConst, commandObj, commands, appRegex, defaultSchema, PACKAGE_NAME, DEFAULT_APP_PREFIX } from '../constants/index.js'
+import fs from 'fs'
+
 export const getCommand = () => {
     return process.argv[2];
 }
@@ -72,6 +74,55 @@ export function displayHelp(){
     printNewLine();
 }
 
+export const parsePackageJSON = (dirName) => {
+    const packageJSONPath = `${dirName.slice(0, -4)}/package.json`
+    const data = fs.readFileSync(packageJSONPath, {encoding:'utf8', flag:'r'});
+    return JSON.parse(data);
+}
+
 export const isValidPort = (port) => {
     return !isNaN(port);
+}
+
+const getFilesInDir = source => 
+     fs.readdirSync(source, { withFileTypes: true })
+
+const getDirectories = source =>
+  getFilesInDir(source)
+    .filter(dirent => dirent.isDirectory())
+    .map(dirent => dirent.name)
+
+
+export const getUniqueAppName = (folderName) => {
+    const directories = getDirectories(folderName);
+    let i = 1;
+    const getName = () => `${DEFAULT_APP_PREFIX}${i}`;
+    let uniqueName = getName();
+    while(directories.indexOf(uniqueName) !== -1){
+        i = i+1;
+        uniqueName = getName();
+    }
+    return uniqueName;
+}
+
+export const createNewApp = (folderName) => {
+    try{
+        fs.mkdirSync(folderName);
+        const dirName = getDirName(import.meta.url);
+        const skeletonFolder = `${dirName.slice(0, -6)}/skeleton`;
+        let files = getFilesInDir(skeletonFolder).filter(ele => ele.isFile());
+        files.forEach(file => {
+            const { name } = file;
+            fs.copyFile(`${skeletonFolder}/${name}`, `${folderName}/${name}`, err => {
+                if(err){
+                    log(chalk.red('Error while creating new app') + err)
+                }
+            });
+        })
+    }
+    catch(err){
+        if(err.code === 'EEXIST'){
+            log(chalk.red('Folder already exists. Kindly provide a unique name'));
+        }
+    }
 }

@@ -2,10 +2,9 @@ import getHTMLStr from './constants/htmlStr.js'
 import browserSync from 'browser-sync'
 import { getCrntWrkingDir } from '../utils/index.js';
 import { getPathNameOfStatic } from './utils/index.js';
-import { rootFolder } from '../constants/index.js';
 
 function startServer(options = {}){
-    const { port = 3000 } = options;
+    const { port = 3000, rootFolder } = options;
     const bs = browserSync.init({
         server: 'app',
         watch: true,

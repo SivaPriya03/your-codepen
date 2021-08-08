@@ -55,5 +55,7 @@ export const commandObj = {
 
 export const PACKAGE_NAME = 'your-codepen'
 
+export const DEFAULT_APP_PREFIX = 'untitled' 
 
 export const appRegex = /--(\w+):(\w+)=(\w+)/;
+
