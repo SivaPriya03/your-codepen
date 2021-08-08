@@ -126,3 +126,13 @@ export const createNewApp = (folderName) => {
         }
     }
 }
+
+export const createRootFolder = (folder) => {
+    if(!fs.existsSync(folder)){
+        fs.mkdirSync(folder);
+    }
+}
+
+export const initApp = folder => {
+    
+}

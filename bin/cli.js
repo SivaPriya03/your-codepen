@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import chalk from "chalk";
 import startServer from "../src/server/index.js";
-import { getArguments, getCommand, getDirName, displayHelp, align, log, isValidPort, getUniqueAppName, createNewApp, parsePackageJSON } from "../src/utils/index.js";
-import { PACKAGE_NAME, commandObj, commands, rootFolder } from "../src/constants/index.js";
+import { getArguments, getCommand, getDirName, displayHelp, align, log, isValidPort, getUniqueAppName, createNewApp, parsePackageJSON, initApp, createRootFolder } from "../src/utils/index.js";
+import { PACKAGE_NAME, commandObj, commands, rootFolder, appConst } from "../src/constants/index.js";
 
 const command = getCommand();
 
@@ -25,9 +25,6 @@ switch(command){
         break;
     }
     case commands.INIT:{
-
-    }
-    case commands.CREATE_NEW:{
         const { errorString, options } = getArguments();
         if(errorString){
             log(chalk.red(errorString));
@@ -38,7 +35,25 @@ switch(command){
             if(!name){
                 name = getUniqueAppName(rootFolder);
             }
-            createNewApp(`${rootFolder}/${name}`, getDirName(import.meta.url));
+            initApp(rootFolder, name);
+        }
+        align(chalk.green(`Run ${PACKAGE_NAME} ${commands.start} and access https://localhost:3000/${name} to see your app`))
+        break;
+    }
+    case commands.CREATE_NEW:{
+        const { errorString, options } = getArguments();
+        if(errorString){
+            log(chalk.red(errorString));
+            displayHelp();
+        }
+        else{
+            let { name } = options;
+            createRootFolder(rootFolder); // Creates Root folder if it doesn't exists
+            if(!name){
+                name = getUniqueAppName(rootFolder);
+            }
+            createNewApp(`${rootFolder}/${name}`);
+            align(chalk.green(`Run ${PACKAGE_NAME} ${commands.START} and access http://localhost:3000/${name} to see your app`))
         }
         break;
     }
