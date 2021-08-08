@@ -6,6 +6,8 @@ export const commands = {
 }
 export const appConst = 'app'
 
+export const rootFolder = 'app';
+
 export const defaultSchema = {
     parentOptions: [appConst],
     userOptions: ['name']

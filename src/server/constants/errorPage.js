@@ -1,0 +1,19 @@
+const errorPage = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        h1,h2{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1> 404: Page not found </h1>
+<h2> It seems there is no app matching the url. Kindly create a new app using your-codepen create &lt;app-name&gt; </h2>
+</body>
+</html>`
+export default errorPage;
