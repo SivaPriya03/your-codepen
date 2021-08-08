@@ -1,40 +1,51 @@
 #!/usr/bin/env node
-
-// const { tellHi } = require("../utils/params");
-import boxen from "boxen";
 import chalk from "chalk";
-import yargs from "yargs";
-import optionConstants from "../src/constants/index.js";
 import startServer from "../src/server/index.js";
-import { getCommand } from "../src/utils/index.js";
-
-const options = yargs
- .usage("Usage: -n <name>")
- .options(optionConstants)
- .argv;
-
+import { getArguments, getCommand, getDirName, displayHelp, align, log, isValidPort } from "../src/utils/index.js";
+import fs from 'fs'
+import { PACKAGE_NAME, commandObj, commands } from "../src/constants/index.js";
 const command = getCommand();
 
 switch(command){
-    case 'startApp':{
-        startServer();
+    case commands.START:{
+        const { errorString, options } = getArguments(commandObj[commands.START].schema);
+        if(errorString){
+            log(chalk.red(errorString));
+            displayHelp();
+        }
+        else{
+            const { port } = options;
+            if(isValidPort(port)){
+                startServer(options);
+            }
+            else{
+                log(chalk.red('Port number specified is invalid'));
+            }
+        }
+        break;
+    }
+    case commands.INIT:{
+
+    }
+    case commands.CREATE_NEW:{
+        
+    }
+    case '-v':
+    case '--version':{
+        const dirName = getDirName(import.meta.url);
+        const packageJSONPath = `${dirName.slice(0, -4)}/package.json`
+        const data = fs.readFileSync(packageJSONPath, {encoding:'utf8', flag:'r'});
+        const packageJSON = JSON.parse(data);
+        log(packageJSON.version);
+        break;
+    }
+    case '-h':
+    case '--help':{
+        displayHelp();
         break;
     }
     default:{
-        console.log('Invalid argument');
+        align(chalk.red('Invalid command', command));
+        align('Run '+chalk.green(`${PACKAGE_NAME} --help `) + 'to see all options')
     }
 }
-
-
-// const greeting2 = chalk.white.bold("Hello!");
-
-// const boxenOptions = {
-//  padding: 1,
-//  margin: 1,
-//  borderStyle: "round",
-//  borderColor: "green",
-//  backgroundColor: "#555555"
-// };
-// const msgBox = boxen( greeting2, boxenOptions );
-
-// console.log(msgBox);

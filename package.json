@@ -1,12 +1,12 @@
 {
   "name": "your-codepen",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple codepen that runs locally on your machine",
   "main": "bin/cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "startdev": "nodemon ./src/server/index.js",
-    "start": "node ./src/server/index.js"
+    "watch-server": "nodemon ./src/server/index.js",
+    "start-server": "node ./src/server/index.js"
   },
   "bin": {
     "your-codepen": "./bin/cli.js"
