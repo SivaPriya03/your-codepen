@@ -3,6 +3,8 @@ import { dirname } from 'path';
 import chalk from "chalk";
 import { appConst, commandObj, commands, appRegex, defaultSchema, PACKAGE_NAME, DEFAULT_APP_PREFIX } from '../constants/index.js'
 import fs from 'fs'
+import child_process from 'child_process';
+import os from 'os'
 
 export const getCommand = () => {
     return process.argv[2];
@@ -133,6 +135,27 @@ export const createRootFolder = (folder) => {
     }
 }
 
-export const initApp = folder => {
-    
+export const initApp = (folder, name, onSuccess) => {
+    /* Creates a folder with user specified name and a package.json by running npm init */
+    fs.mkdirSync(name);
+    // process.chdir(name);
+    const cwd = `${getCrntWrkingDir()}/${name}`;
+    child_process.exec('npm init -y', {
+        cwd
+    }, (err, stdout, stderr) => {
+        if(err || stderr){
+            log(chalk.red('An error occurred', err));
+        }
+        else{
+            const packageJSONPath = `${cwd}/package.json`;
+            const data = fs.readFileSync(packageJSONPath, 'utf-8');
+            const parsedJSON = JSON.parse(data);
+            parsedJSON.scripts = {
+                [commands.START]: `${PACKAGE_NAME} ${commands.START}`,
+                [commands.CREATE_NEW]: `${PACKAGE_NAME} ${commands.CREATE_NEW}`
+            }
+            const newPackageJsonStr = JSON.stringify(parsedJSON, null, 4);
+            fs.writeFileSync(packageJSONPath,  newPackageJsonStr+ os.EOL, { encoding: 'utf-8'})
+        }
+    })
 }
