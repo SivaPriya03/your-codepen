@@ -2,7 +2,7 @@
 import chalk from "chalk";
 import startServer from "../src/server/index.js";
 import { getArguments, getCommand, getDirName, displayHelp, align, log, isValidPort, getUniqueAppName, createNewApp, parsePackageJSON, initApp, createRootFolder } from "../src/utils/index.js";
-import { PACKAGE_NAME, commandObj, commands, rootFolder, appConst } from "../src/constants/index.js";
+import { PACKAGE_NAME, commandObj, commands, rootFolder } from "../src/constants/index.js";
 
 const command = getCommand();
 

@@ -90,7 +90,7 @@ export const isValidPort = (port) => {
 const getFilesInDir = source => 
      fs.readdirSync(source, { withFileTypes: true })
 
-const getDirectories = source =>
+export const getDirectories = source =>
   getFilesInDir(source)
     .filter(dirent => dirent.isDirectory())
     .map(dirent => dirent.name)
