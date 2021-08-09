@@ -5,6 +5,7 @@ import { appConst, commandObj, commands, appRegex, defaultSchema, PACKAGE_NAME, 
 import fs from 'fs'
 import child_process from 'child_process';
 import os from 'os'
+import getReadMe from '../constants/readMe.js';
 
 export const getCommand = () => {
     return process.argv[2];
@@ -144,7 +145,7 @@ export const initApp = (folder, name, onSuccess) => {
         cwd
     }, (err, stdout, stderr) => {
         if(err || stderr){
-            log(chalk.red('An error occurred', err));
+            log(chalk.red('An error occurred', err || stderr));
         }
         else{
             const packageJSONPath = `${cwd}/package.json`;
@@ -155,7 +156,19 @@ export const initApp = (folder, name, onSuccess) => {
                 [commands.CREATE_NEW]: `${PACKAGE_NAME} ${commands.CREATE_NEW}`
             }
             const newPackageJsonStr = JSON.stringify(parsedJSON, null, 4);
-            fs.writeFileSync(packageJSONPath,  newPackageJsonStr+ os.EOL, { encoding: 'utf-8'})
+            fs.writeFileSync(packageJSONPath,  newPackageJsonStr+ os.EOL, { encoding: 'utf-8'});
+            child_process.exec(`npm run ${commands.CREATE_NEW} -- --app:name=${name}`, { cwd }, (err, out, stderr) => {
+                if(err || stderr){
+                    log(chalk.red('An error occurred while creating new app', err || stderr));
+                    console.log(stderr);
+                    console.log(err);
+                }
+                else{
+                    onSuccess();
+                    const readMeContent = getReadMe(name);
+                    fs.writeFileSync(`${cwd}/README.md`, readMeContent , { encoding: 'utf-8'})
+                }
+            })
         }
     })
 }
