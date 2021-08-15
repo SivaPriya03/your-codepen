@@ -36,7 +36,7 @@ switch(command){
                 name = getUniqueAppName(rootFolder);
             }
             initApp(rootFolder, name, () => {
-                align(chalk.green(`Run ${PACKAGE_NAME} ${commands.START} and access https://localhost:3000/${name} to see your app`))
+                align(chalk.green(`Run ${PACKAGE_NAME} ${commands.START} or npm ${commands.START} -- --app:port=<port>[optional] and access https://localhost:3000/${name} to see your app`))
             });
             
         }
