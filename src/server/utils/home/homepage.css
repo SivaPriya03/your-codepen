@@ -29,7 +29,7 @@ body{
     /* background: rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box; */
     height: var(--iframe-height);
     width: var(--iframe-width);
-    /* padding: var(--iframe-padding) var(--iframe-padding) var(--iframe-padding-bottom) var(--iframe-padding); */
+    padding: var(--iframe-padding) var(--iframe-padding) var(--iframe-padding-bottom) var(--iframe-padding);
     border-radius: 1em;
     position: relative;
     box-shadow: 0 .5em 1em 0 var(--card-shadow);
