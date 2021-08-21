@@ -1,23 +1,22 @@
 /* CSS file */
 :root{
-    --iframe-height: 15em;
-    --iframe-width: 20em;
-    --primary-bg: #1A1A1A;
-    --secondary-bg: rgba(21, 21, 21, 0.8);
+    --iframe-height: 10em;
+    --iframe-width: 15em;
+    --primary-bg: #fff;
+    --secondary-bg: #907FA4;
     --highlight-font-color: #6F4A8E;
-    --primary-font-color: rgb(153,153,153);
+    --primary-font-color: #000;
     --card-shadow: rgb(0,0,0,0.2);
     --card-shadow-hover: rgb(0,0,0,0.4);
     --iframe-padding-bottom: 4.5em;
     --iframe-padding: 1.5em;
 }
 body{
-    background: var(--primary-bg);  /* fallback for old browsers */   
+    background: var(--primary-bg);  /* fallback for old browsers */     
     color: var(--primary-font-color);
 }
 .heading{
     text-align: center;
-    color: rgb(255, 255, 255);
 }
 .codepen{
     padding: 2em;
@@ -26,15 +25,13 @@ body{
 }
 .iframeParent{
     background-color: var(--secondary-bg);
-    /* background: rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box; */
     height: var(--iframe-height);
     width: var(--iframe-width);
-    /* padding: var(--iframe-padding) var(--iframe-padding) var(--iframe-padding-bottom) var(--iframe-padding); */
+    padding: var(--iframe-padding) var(--iframe-padding) var(--iframe-padding-bottom) var(--iframe-padding);
     border-radius: 1em;
     position: relative;
     box-shadow: 0 .5em 1em 0 var(--card-shadow);
     transition: box-shadow .5s;
-    border: .1em solid rgb(36, 36, 36);
 }
 .iframeParent:hover{
     box-shadow: 0 1em 1.5em 0 var(--card-shadow-hover);
@@ -53,8 +50,6 @@ body{
     height: 100%;
     width: 100%;
     background-color: #fff;
-    border: none;
-    overflow: hidden;
 }
 
 footer{
@@ -69,18 +64,15 @@ footer{
     text-decoration: none;
     color: var(--highlight-font-color);
 }
-.pentitle{
-    text-transform: capitalize;
-}
 @media only screen and (max-width:3500px) {
     .codepen{
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(7, 1fr);
         grid-gap: 2.5em .5em;
     }
 }
 @media only screen and (max-width:3000px) {
     .codepen{
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         grid-gap: 2.5em 1em;
     }
 }
