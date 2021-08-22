@@ -2,8 +2,8 @@
 :root{
     --iframe-height: 15em;
     --iframe-width: 20em;
-    --primary-bg: #1A1A1A;
-    --secondary-bg: rgba(21, 21, 21, 0.8);
+    --primary-bg: #0e1217;
+    --secondary-bg: #1c1f26;
     --highlight-font-color: #6F4A8E;
     --primary-font-color: rgb(153,153,153);
     --card-shadow: rgb(0,0,0,0.2);
@@ -34,10 +34,11 @@ body{
     position: relative;
     box-shadow: 0 .5em 1em 0 var(--card-shadow);
     transition: box-shadow .5s;
-    border: .1em solid rgb(36, 36, 36);
+    border: .1em solid rgb(36, 36, 36, 0.2);
 }
 .iframeParent:hover{
     box-shadow: 0 1em 1.5em 0 var(--card-shadow-hover);
+    border-color: rgb(255, 255, 255, 0.5);
 }
 .iframeLink{
     height: 100%;
