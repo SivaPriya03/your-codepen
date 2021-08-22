@@ -2,9 +2,10 @@ import fs from 'fs';
 import { getDirectories, getDirName } from '../../../utils/index.js';
 import getHTMLStr from '../../constants/htmlStr.js';
 export default function generateIndexHTML(rootFolder){
-    const dirName = getDirName(import.meta.url)
-    const cssFilePath = `${dirName}/homepage.css`;
-    const jsFilePath = `${dirName}/homepage.js`;
+    const dirName = getDirName(import.meta.url);
+    const staticDir = `${dirName.slice(0, -11)}/statics/homepage`;
+    const cssFilePath = `${staticDir}/index.css`;
+    const jsFilePath = `${staticDir}/index.js`;
     let folders = getDirectories(rootFolder) || [];
     let folderStr = '';
     folders.forEach((ele, index) => {

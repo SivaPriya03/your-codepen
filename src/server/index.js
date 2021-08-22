@@ -9,6 +9,7 @@ function startServer(options = {}){
     const bs = browserSync.init({
         server: 'app',
         watch: true,
+        https: true,
         files: [rootFolder],
         reloadDebounce: 500, // Wait 1 sec
         injectChanges: false,
