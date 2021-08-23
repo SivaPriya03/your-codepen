@@ -36,6 +36,14 @@ To create another pen run `your-codepen createnew --app:name=<pen-name>[optional
 bin/cli.js -> Deals with arguments that are passed in your-codepen 
 src/server/* -> Deals with running browsersync server and providing static files 
 
+# Version 1.0.0
+
+- Supports only node with versions 14.x or above 😥
+
+# Version 1.0.1
+
+- Supports node versions lower than 14.x 🥳 🎉
+
 
 # Upcoming Features
 - Support for CSS Preprocessor like Sass, Scss
