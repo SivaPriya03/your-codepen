@@ -1,8 +1,8 @@
-import getHTMLStr from './constants/htmlStr.js'
-import browserSync from 'browser-sync'
-import { getCrntWrkingDir } from '../utils/index.js';
-import { getPathNameOfStatic } from './utils/index.js';
-import generateIndexHTML from './utils/home/generateIndexHTML.js';
+const getHTMLStr = require('./constants/htmlStr.js');
+const browserSync = require('browser-sync');
+const { getCrntWrkingDir } = require('../utils/index.js');
+const { getPathNameOfStatic } = require('./utils/index.js');
+const generateIndexHTML = require('./utils/home/generateIndexHTML.js');
 
 function startServer(options = {}){
     const { port = 3000, rootFolder } = options;
@@ -31,4 +31,4 @@ function startServer(options = {}){
         ]
     });
 }
-export default startServer;
+module.exports =  startServer;

@@ -1,11 +1,15 @@
 #!/usr/bin/env node
-import chalk from "chalk";
-import startServer from "../src/server/index.js";
-import { getArguments, getCommand, getDirName, displayHelp, align, log, isValidPort, getUniqueAppName, createNewApp, parsePackageJSON, initApp, createRootFolder } from "../src/utils/index.js";
-import { PACKAGE_NAME, commandObj, commands, rootFolder } from "../src/constants/index.js";
+const chalk = require("chalk");
+const startServer = require("../src/server/index.js");
+const { getArguments, getCommand, getDirName, displayHelp, align, log, isValidPort, getUniqueAppName, createNewApp, parsePackageJSON, initApp, createRootFolder } = require("../src/utils/index.js");
+const { PACKAGE_NAME, commandObj, commands, rootFolder } = require("../src/constants/index.js");
 
 const command = getCommand();
-
+global.import = {
+    meta:{
+        url: ''
+    }
+}
 switch(command){
     case commands.START:{
         const { errorString, options } = getArguments(commandObj[commands.START].schema);
@@ -61,7 +65,7 @@ switch(command){
     }
     case '-v':
     case '--version':{
-        const packageJSON = parsePackageJSON(getDirName(import.meta.url));
+        const packageJSON = parsePackageJSON(__dirname);
         log(packageJSON.version);
         break;
     }
@@ -75,3 +79,4 @@ switch(command){
         align('Run '+chalk.green(`${PACKAGE_NAME} --help `) + 'to see all options')
     }
 }
+

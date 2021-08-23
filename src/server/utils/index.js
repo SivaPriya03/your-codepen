@@ -1,6 +1,6 @@
-import { promises } from 'fs'
-import errorPage from '../constants/errorPage.js';
-import getHTMLStr from '../constants/htmlStr.js';
+const { promises } = require('fs');
+const errorPage = require('../constants/errorPage.js');
+const getHTMLStr = require('../constants/htmlStr.js');
 const getAllFilePaths = (reqPath, serverDIR, appConst) => {
     const getParentDirPath = (ext) => {
         let pathResource = reqPath.split('/')[1];
@@ -13,7 +13,7 @@ const readFile = (filePath) => {
     return promises.readFile(filePath, "utf8")
 }
 
-export const getPathNameOfStatic = (reqPath, serverDIR, appConst) => {
+const getPathNameOfStatic = (reqPath, serverDIR, appConst) => {
     const { html, css, js } = getAllFilePaths(reqPath, serverDIR, appConst);
     return Promise.all([
         readFile(html),
@@ -30,7 +30,11 @@ export const getPathNameOfStatic = (reqPath, serverDIR, appConst) => {
     })
 }
 
-export const isBlackListedURL = (reqPath) => {
+const isBlackListedURL = (reqPath) => {
     const blackList = ['/favicon.ico'];
     return blackList.indexOf(reqPath) !== -1;
+}
+module.exports = {
+    getPathNameOfStatic,
+    isBlackListedURL
 }

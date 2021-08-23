@@ -1,6 +1,6 @@
 {
   "name": "your-codepen",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple codepen that runs locally on your machine",
   "main": "bin/cli.js",
   "scripts": {
@@ -11,7 +11,6 @@
   "bin": {
     "your-codepen": "./bin/cli.js"
   },
-  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",

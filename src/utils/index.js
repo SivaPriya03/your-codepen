@@ -1,18 +1,18 @@
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import chalk from "chalk";
-import { appConst, commandObj, commands, appRegex, defaultSchema, PACKAGE_NAME, DEFAULT_APP_PREFIX } from '../constants/index.js'
-import fs from 'fs'
-import child_process from 'child_process';
-import os from 'os'
-import getReadMe from '../constants/readMe.js';
+const { fileURLToPath } = require('url');
+const { dirname } = require('path');
+const chalk = require("chalk");
+const { appConst, commandObj, commands, appRegex, defaultSchema, PACKAGE_NAME, DEFAULT_APP_PREFIX } = require('../constants/index.js');
+const fs = require('fs');
+const child_process = require('child_process');
+const os = require('os');
+const getReadMe = require('../constants/readMe.js');
 
-export const getCommand = () => {
+const getCommand = () => {
     return process.argv[2];
 }
-export const log = console.log;
+const log = console.log;
 
-export const getArguments = (userSchema = defaultSchema) => {
+const getArguments = (userSchema = defaultSchema) => {
     const userArgs = process.argv.slice(3);
     let errorString = '';
     const options = {};
@@ -37,17 +37,17 @@ export const getArguments = (userSchema = defaultSchema) => {
     });
     return { options, errorString }
 }
-export const getDirName = (url) => { // import.meta.url
+const getDirName = (url) => { // import.meta.url
     const __filename = fileURLToPath(url);
     return dirname(__filename);
 }
 
-export const getCrntWrkingDir = process.cwd;
+const getCrntWrkingDir = process.cwd;
 
-export const validateCommands = () => {
+const validateCommands = () => {
 
 }
-export function align(text, length = 3){
+function align(text, length = 3){
     let spaces = ``;
     for(let i = 0;i< length;i++){
         spaces = spaces + ` `;
@@ -55,12 +55,12 @@ export function align(text, length = 3){
     log(spaces + text);
 }
 
-export function printNewLine(){
+function printNewLine(){
     log('\n');
     
 }
 
-export function displayHelp(){
+function displayHelp(){
     log(`Usage: ${PACKAGE_NAME} `+ chalk.greenBright('<command>'));
     printNewLine();
     log('where command is one of:');
@@ -77,26 +77,26 @@ export function displayHelp(){
     printNewLine();
 }
 
-export const parsePackageJSON = (dirName) => {
+const parsePackageJSON = (dirName) => {
     const packageJSONPath = `${dirName.slice(0, -4)}/package.json`
     const data = fs.readFileSync(packageJSONPath, {encoding:'utf8', flag:'r'});
     return JSON.parse(data);
 }
 
-export const isValidPort = (port) => {
+const isValidPort = (port) => {
     return !isNaN(port);
 }
 
 const getFilesInDir = source => 
      fs.readdirSync(source, { withFileTypes: true })
 
-export const getDirectories = source =>
+const getDirectories = source =>
   getFilesInDir(source)
     .filter(dirent => dirent.isDirectory())
     .map(dirent => dirent.name)
 
 
-export const getUniqueAppName = (folderName) => {
+const getUniqueAppName = (folderName) => {
     const directories = getDirectories(folderName);
     let i = 1;
     const getName = () => `${DEFAULT_APP_PREFIX}${i}`;
@@ -108,10 +108,10 @@ export const getUniqueAppName = (folderName) => {
     return uniqueName;
 }
 
-export const createNewApp = (folderName) => {
+const createNewApp = (folderName) => {
     try{
         fs.mkdirSync(folderName);
-        const dirName = getDirName(import.meta.url);
+        const dirName = __dirname;
         const skeletonFolder = `${dirName.slice(0, -6)}/skeleton`;
         let files = getFilesInDir(skeletonFolder).filter(ele => ele.isFile());
         files.forEach(file => {
@@ -130,13 +130,13 @@ export const createNewApp = (folderName) => {
     }
 }
 
-export const createRootFolder = (folder) => {
+const createRootFolder = (folder) => {
     if(!fs.existsSync(folder)){
         fs.mkdirSync(folder);
     }
 }
 
-export const initApp = (folder, name, onSuccess) => {
+const initApp = (folder, name, onSuccess) => {
     /* Creates a folder with user specified name and a package.json by running npm init */
     fs.mkdirSync(name);
     // process.chdir(name);
@@ -171,4 +171,23 @@ export const initApp = (folder, name, onSuccess) => {
             })
         }
     })
+}
+
+module.exports = {
+    getCommand,
+    log,
+    getArguments,
+    getDirName,
+    getCrntWrkingDir,
+    validateCommands,
+    align,
+    printNewLine,
+    displayHelp,
+    parsePackageJSON,
+    isValidPort,
+    getDirectories,
+    getUniqueAppName,
+    createNewApp,
+    createRootFolder,
+    initApp
 }

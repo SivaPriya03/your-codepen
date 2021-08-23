@@ -1,5 +1,5 @@
 const defaultHTML = `<h1> Home Page </h1>`
-export default function(html = defaultHTML, styles = '', jsContent = '', title = 'App') {
+module.exports =  function(html = defaultHTML, styles = '', jsContent = '', title = 'App') {
   return `<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -19,3 +19,4 @@ export default function(html = defaultHTML, styles = '', jsContent = '', title =
   </body>
   </html>`
 }
+

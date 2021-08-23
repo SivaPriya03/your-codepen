@@ -1,8 +1,8 @@
-import fs from 'fs';
-import { getDirectories, getDirName } from '../../../utils/index.js';
-import getHTMLStr from '../../constants/htmlStr.js';
-export default function generateIndexHTML(rootFolder){
-    const dirName = getDirName(import.meta.url);
+const fs = require('fs');
+const { getDirectories, getDirName } = require('../../../utils/index.js');
+const getHTMLStr = require('../../constants/htmlStr.js');
+module.exports =  function generateIndexHTML(rootFolder){
+    const dirName = __dirname;
     const staticDir = `${dirName.slice(0, -11)}/statics/homepage`;
     const cssFilePath = `${staticDir}/index.css`;
     const jsFilePath = `${staticDir}/index.js`;

@@ -16,4 +16,4 @@ const errorPage = `<!DOCTYPE html>
 <h2> It seems there is no app matching the url. Kindly create a new app using your-codepen create &lt;app-name&gt; </h2>
 </body>
 </html>`
-export default errorPage;
+module.exports =  errorPage;

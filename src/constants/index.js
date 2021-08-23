@@ -1,19 +1,19 @@
 
-export const commands = {
+const commands = {
     INIT: 'init',
     CREATE_NEW: 'createnew',
     START: 'start'
 }
-export const appConst = 'app'
+const appConst = 'app'
 
-export const rootFolder = 'app';
+const rootFolder = 'app';
 
-export const defaultSchema = {
+const defaultSchema = {
     parentOptions: [appConst],
     userOptions: ['name']
 }
 
-export const commandObj = {
+const commandObj = {
     [commands.INIT]: {
         name: commands.INIT,
         description: 'Initialize a new directory with sample app',
@@ -53,9 +53,19 @@ export const commandObj = {
     }
 };
 
-export const PACKAGE_NAME = 'your-codepen'
+const PACKAGE_NAME = 'your-codepen'
 
-export const DEFAULT_APP_PREFIX = 'untitled' 
+const DEFAULT_APP_PREFIX = 'untitled' 
 
-export const appRegex = /--(\w+):(\w+)=(\w+)/;
+const appRegex = /--(\w+):(\w+)=(\w+)/;
 
+module.exports = {
+    appRegex, 
+    DEFAULT_APP_PREFIX,
+    PACKAGE_NAME,
+    commands,
+    appConst,
+    rootFolder,
+    defaultSchema,
+    commandObj
+}

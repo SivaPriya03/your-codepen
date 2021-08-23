@@ -1,4 +1,4 @@
-import { commands } from "./index.js"
+const { commands } = require("./index.js");
 
 const getReadMe = (name) => {
     return `
@@ -10,4 +10,4 @@ P.S Providing port is optional
     `
 }
 
-export default getReadMe;
+module.exports = getReadMe;
