@@ -5,11 +5,6 @@ const { getArguments, getCommand, getDirName, displayHelp, align, log, isValidPo
 const { PACKAGE_NAME, commandObj, commands, rootFolder } = require("../src/constants/index.js");
 
 const command = getCommand();
-global.import = {
-    meta:{
-        url: ''
-    }
-}
 switch(command){
     case commands.START:{
         const { errorString, options } = getArguments(commandObj[commands.START].schema);

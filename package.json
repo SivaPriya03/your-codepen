@@ -1,6 +1,6 @@
 {
   "name": "your-codepen",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple codepen that runs locally on your machine",
   "main": "bin/cli.js",
   "scripts": {
