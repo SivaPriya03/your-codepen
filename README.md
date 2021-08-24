@@ -40,7 +40,7 @@ src/server/* -> Deals with running browsersync server and providing static files
 
 - Supports only node with versions 14.x or above 😥
 
-# Version 1.0.1
+# Version 1.0.2
 
 - Supports node versions lower than 14.x 🥳 🎉
 
